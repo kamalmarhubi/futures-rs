@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Then` struct in crate `futures`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Then">
+
+    <title>futures::Then - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>futures</a></p><script>window.sidebarCurrent = {name: 'Then', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>futures</a>::<wbr><a class='struct' href=''>Then</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1149' class='srclink' href='../src/futures/src/then.rs.html#5-7' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Then&lt;A, B, F&gt; <span class='where'>where A: <a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Future</a>, B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a></span> {
+    // some fields omitted
+}</pre><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;A, B, F&gt; <a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Future</a> for <a class='struct' href='../futures/struct.Then.html' title='futures::Then'>Then</a>&lt;A, B, F&gt; <span class='where'>where A: <a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Future</a>, B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;A::Item, A::Error&gt;) -&gt; B + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static</span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1160' class='srclink' href='../src/futures/src/then.rs.html#19-44' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item' class='type'><code>type <a href='../futures/trait.Future.html#associatedtype.Item' class='type'>Item</a> = B::Item</code></h4>
+<h4 id='associatedtype.Error' class='type'><code>type <a href='../futures/trait.Future.html#associatedtype.Error' class='type'>Error</a> = B::Error</code></h4>
+<h4 id='method.schedule' class='method'><code>fn <a href='../futures/trait.Future.html#tymethod.schedule' class='fnname'>schedule</a>&lt;G&gt;(&amp;mut self, g: G) <span class='where'>where G: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(<a class='type' href='../futures/type.PollResult.html' title='futures::PollResult'>PollResult</a>&lt;B::Item, B::Error&gt;) + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static</span></code></h4>
+<h4 id='method.schedule_boxed' class='method'><code>fn <a href='../futures/trait.Future.html#tymethod.schedule_boxed' class='fnname'>schedule_boxed</a>(&amp;mut self, cb: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../futures/trait.Callback.html' title='futures::Callback'>Callback</a>&lt;B::Item, B::Error&gt;&gt;)</code></h4>
+<h4 id='method.boxed' class='method'><code>fn <a href='../futures/trait.Future.html#method.boxed' class='fnname'>boxed</a>(self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Future</a>&lt;Item=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>, Error=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>&gt;&gt; <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.map' class='method'><code>fn <a href='../futures/trait.Future.html#method.map' class='fnname'>map</a>&lt;F, U&gt;(self, f: F) -&gt; <a class='struct' href='../futures/struct.Map.html' title='futures::Map'>Map</a>&lt;Self, F&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>) -&gt; U + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, U: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.map_err' class='method'><code>fn <a href='../futures/trait.Future.html#method.map_err' class='fnname'>map_err</a>&lt;F, E&gt;(self, f: F) -&gt; <a class='struct' href='../futures/struct.MapErr.html' title='futures::MapErr'>MapErr</a>&lt;Self, F&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>) -&gt; E + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, E: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.then' class='method'><code>fn <a href='../futures/trait.Future.html#method.then' class='fnname'>then</a>&lt;F, B&gt;(self, f: F) -&gt; <a class='struct' href='../futures/struct.Then.html' title='futures::Then'>Then</a>&lt;Self, B, F&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>, Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>&gt;) -&gt; B + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.and_then' class='method'><code>fn <a href='../futures/trait.Future.html#method.and_then' class='fnname'>and_then</a>&lt;F, B&gt;(self, f: F) -&gt; <a class='struct' href='../futures/struct.AndThen.html' title='futures::AndThen'>AndThen</a>&lt;Self, B, F&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>) -&gt; B + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>&lt;Error=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.or_else' class='method'><code>fn <a href='../futures/trait.Future.html#method.or_else' class='fnname'>or_else</a>&lt;F, B&gt;(self, f: F) -&gt; <a class='struct' href='../futures/struct.OrElse.html' title='futures::OrElse'>OrElse</a>&lt;Self, B, F&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>) -&gt; B + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>&lt;Item=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.select' class='method'><code>fn <a href='../futures/trait.Future.html#method.select' class='fnname'>select</a>&lt;B&gt;(self, other: B) -&gt; <a class='struct' href='../futures/struct.Select.html' title='futures::Select'>Select</a>&lt;Self, B::Future&gt; <span class='where'>where B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>&lt;Item=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>, Error=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.join' class='method'><code>fn <a href='../futures/trait.Future.html#method.join' class='fnname'>join</a>&lt;B&gt;(self, other: B) -&gt; <a class='struct' href='../futures/struct.Join.html' title='futures::Join'>Join</a>&lt;Self, B::Future&gt; <span class='where'>where B: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>&lt;Error=Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Error</a>&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.flatten' class='method'><code>fn <a href='../futures/trait.Future.html#method.flatten' class='fnname'>flatten</a>(self) -&gt; <a class='struct' href='../futures/struct.Flatten.html' title='futures::Flatten'>Flatten</a>&lt;Self&gt; <span class='where'>where Self::<a class='trait' href='../futures/trait.Future.html' title='futures::Future'>Item</a>: <a class='trait' href='../futures/trait.IntoFuture.html' title='futures::IntoFuture'>IntoFuture</a>, Self::Item::Error: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;Self::Error&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+<h4 id='method.forget' class='method'><code>fn <a href='../futures/trait.Future.html#method.forget' class='fnname'>forget</a>(self) <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a></span></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "futures";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
