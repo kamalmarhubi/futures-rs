@@ -9,6 +9,8 @@ use std::sync::Arc;
 use futures::*;
 use futuremio::{Loop, IoFuture, TcpListener, TcpStream};
 
+mod mux;
+pub use mux::Mux;
 mod request;
 pub use self::request::{Request, RequestHeaders};
 mod response;
