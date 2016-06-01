@@ -18,13 +18,30 @@ mod io2;
 mod atomic;
 
 pub fn serve<S>(addr: &SocketAddr, s: S)
-    where S: Fn(Request) -> Box<Future<Item=Response, Error=io::Error>> +
-             Sync + Send + 'static
+    where S: IntoHandler
 {
-    _serve(addr, Arc::new(s))
+    _serve(addr, s.into_handler())
 }
 
-type Handler = Arc<Fn(Request) -> Box<IoFuture<Response>> + Send + Sync>;
+pub type Handler = Arc<Fn(Request) -> Box<IoFuture<Response>> + Send + Sync>;
+
+pub trait IntoHandler {
+    fn into_handler(self) -> Handler;
+}
+
+impl IntoHandler for Handler {
+    fn into_handler(self) -> Handler {
+        self
+    }
+}
+
+impl<F> IntoHandler for F
+    where F: Fn(Request) -> Box<Future<Item = Response, Error = io::Error>> + Sync + Send + 'static
+{
+    fn into_handler(self) -> Handler {
+        Arc::new(self)
+    }
+}
 
 fn _serve(addr: &SocketAddr, s: Handler) {
     let mut l = Loop::new().unwrap();
