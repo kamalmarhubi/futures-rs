@@ -1,3 +1,4 @@
+/// A simple lock, backed by an atomic bool.
 mod lock;
 mod slot;
 mod util;

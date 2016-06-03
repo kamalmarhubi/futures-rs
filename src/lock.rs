@@ -3,11 +3,19 @@ use std::ops::{Deref, DerefMut};
 use std::sync::atomic::Ordering::{Acquire, Release};
 use std::sync::atomic::AtomicBool;
 
+/// A lock for protecting shared data.
+///
+/// This lock will not block threads attempting to acquire it. To take the lock, call
+/// [`try_lock`](#method.try_lock), which will either succeed or fail.
 pub struct Lock<T> {
     locked: AtomicBool,
     data: UnsafeCell<T>,
 }
 
+/// An RAII guard for holding a lock. When dropped, the lock is released.
+///
+/// The data protected by the lock can be accessed through this guard via `Deref` and `DerefMut`
+/// implementations.
 pub struct TryLock<'a, T: 'a> {
     __ptr: &'a Lock<T>,
 }
@@ -16,6 +24,7 @@ unsafe impl<T: Send> Send for Lock<T> {}
 unsafe impl<T: Send> Sync for Lock<T> {}
 
 impl<T> Lock<T> {
+    /// Creates a new lock in an unlocked state.
     pub fn new(t: T) -> Lock<T> {
         Lock {
             locked: AtomicBool::new(false),
@@ -23,6 +32,10 @@ impl<T> Lock<T> {
         }
     }
 
+    /// Attempts to acquire the lock.
+    ///
+    /// If the lock could not be acquired, returns `None`, otherwise an RAII guard is returned. The
+    /// lock will be released when the guard is dropped.
     pub fn try_lock(&self) -> Option<TryLock<T>> {
         if !self.locked.swap(true, Acquire) {
             Some(TryLock { __ptr: self })
