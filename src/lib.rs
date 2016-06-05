@@ -1,3 +1,5 @@
+extern crate crossbeam;
+
 mod lock;
 mod slot;
 mod util;
