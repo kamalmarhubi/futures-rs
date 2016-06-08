@@ -9,5 +9,10 @@ futures = { path = ".." }
 httparse = "1.1"
 time = "0.1"
 
+[dev-dependencies]
+env_logger = "0.3.3"
+lazy_static = "0.2.1"
+log = "0.3.6"
+
 [profile.release]
 debug = true
