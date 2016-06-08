@@ -1,4 +1,6 @@
 extern crate crossbeam;
+#[macro_use] extern crate lazy_static;
+#[macro_use] extern crate log;
 
 mod lock;
 mod slot;
@@ -8,6 +10,7 @@ mod error;
 pub use error::{PollError, PollResult};
 
 pub mod executor;
+pub mod fs;
 
 // Primitive futures
 mod collect;
